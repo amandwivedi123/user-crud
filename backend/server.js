@@ -66,16 +66,6 @@ app.get("/getUserById/:id", (req, res) => {
     })
 })
 
-app.delete("/deleteUser/:id", (req, res) => {
-    const { id } = req.params;
-    const query = "DELETE FROM user WHERE id = ? ";
-    db.query(query, [id], (err, result) => {
-        if (err) return res.status(500).json(err);
-        if (result.affectedRows === 0) return res.status(404).json({ message: "User not found" });
-        // res.json({ message: `User ${id} deleted` });
-        successResponse(res, result, "Successfully Deleted data")
-    })
-})
 
 app.put("/updateUser/:id", (req, res) => {
     const { id } = req.params;
